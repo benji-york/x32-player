@@ -47,7 +47,7 @@ def reset_track_buttons(client, except_track=None):
 
 
 def handle_message(x32_address, server_udp_port):
-    
+
     def queue_active_song():
         global player
 	player.pause()
@@ -97,7 +97,7 @@ def handle_message(x32_address, server_udp_port):
     # Request the current minutes and seconds values.
     client.send(OSC.OSCMessage('/-stat/userpar/33/value'))
     client.send(OSC.OSCMessage('/-stat/userpar/34/value'))
-    
+
     print 'Staring change notification thread'
     thread = threading.Thread(target=request_x32_to_send_change_notifications,
         kwargs = {"client": client})
@@ -110,9 +110,9 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--address', required = True,                        
+    parser.add_argument('--address', required = True,
                         help='name/ip-address of Behringer X32 mixing desk')
-    parser.add_argument('--port', default = 10300,                        
+    parser.add_argument('--port', default = 10300,
                         help='UDP-port to open on this machine.')
 
     args = parser.parse_args()
