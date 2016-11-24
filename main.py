@@ -24,9 +24,7 @@ import win32com.client
 position = [0, 0]
 
 def request_x32_to_send_change_notifications(client):
-    """request_x32_to_send_change_notifications sends /xremote repeatedly to
-    mixing desk to make sure changes are transmitted to our server.
-    """
+    """Periodically request change notifications from the mixer."""
     while True:
 	sys.stdout.flush()
 	#print 'Sending update request'
