@@ -13,14 +13,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import OSC
+import argparse
 import pyglet
 import sys
-import time
-
-import OSC
 import threading
 import time
-import sys
 import win32com.client
 
 position = [0, 0]
@@ -72,7 +70,7 @@ def handle_message(x32_address, server_udp_port):
         #print addr, data
         global song_index
         global player
-	sys.stdout.flush()
+	    sys.stdout.flush()
         if addr == '/dca/1/fader' and data:
             if data[0] == 0:
                 print 'pausing'
@@ -122,13 +120,11 @@ def handle_message(x32_address, server_udp_port):
     server.serve_forever()
 
 if __name__ == '__main__':
-    import argparse
-
     parser = argparse.ArgumentParser()
     parser.add_argument('--address', required = True,
-                        help='name/ip-address of Behringer X32 mixing desk')
+        help='name/ip-address of Behringer X32 mixing desk')
     parser.add_argument('--port', default = 10300,
-                        help='UDP-port to open on this machine.')
+        help='UDP-port to open on this machine.')
 
     args = parser.parse_args()
     handle_message(args.address, args.port)
